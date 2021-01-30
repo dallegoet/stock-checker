@@ -1,0 +1,21 @@
+{
+  "name": "stock-checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "playwright": "^1.8.0"
+  },
+  "dependencies": {
+    "audic": "^2.0.0",
+    "chalk": "^4.1.0",
+    "luxon": "^1.25.0",
+    "sound-play": "^1.1.0"
+  }
+}
