@@ -7,7 +7,7 @@ const {DateTime} = require('luxon');
 
 const log = (provider, product, status, statusColor) => {
     const now = DateTime.local().toFormat("HH:mm:ss");
-    process.stdout.write(`\n${chalk.black.bgWhite(now + ' ' + provider.getName().padEnd(15))} ${chalk.bold(product.label.padEnd(27))} ${statusColor(status.padEnd(10))}`);
+    process.stdout.write(`\n${chalk.grey.bgWhite(now + ' ') + chalk.black.bgWhite(provider.getName().padStart(15) + ' ')} ${chalk.bold(product.label.padEnd(38))} ${statusColor(status.padEnd(10))}`);
 }
 
 (async () => {
@@ -17,10 +17,9 @@ const log = (provider, product, status, statusColor) => {
     });
     const page = await browser.newPage();
     await page.setViewportSize({
-        width: 1000,
-        height: 1400,
+        width: 1280,
+        height: 1600,
     });
-
 
     while (true) {
         const randomProducts = config.products.sort(function (a, b) {return 0.5 - Math.random()});
@@ -38,16 +37,16 @@ const log = (provider, product, status, statusColor) => {
 
                 if (isAvailable) {
                     log(provider, product, 'DISPONIBLE', chalk.green);
-                    new Audic("available.mp3").play()
+                    //new Audic("available.mp3").play()
                 } else {
                     log(provider, product, 'RUPTURE', chalk.red);
                 }
             } catch (e) {
+                process.stdout.moveCursor(0, -1) // up one line
+                process.stdout.clearLine(1) // from cursor to end
                 log(provider, product, 'ERREUR', chalk.yellow);
-                console.error(e);
+                //console.error(e);
             }
-
-            await page.waitForTimeout(5000);
         }
 
     }

@@ -4,7 +4,11 @@ module.exports = {
     },
 
     isAvailable: async (page, product) => {
-        await page.goto(product.url);
+        try {
+            await page.goto(product.url);
+        } catch (e) {
+          // do nothing, page is loaded
+        }
 
         // refuse cookies
         try {
@@ -14,7 +18,7 @@ module.exports = {
                 timeout: 5000,
             });
         } catch (e) {
-            // do nothing
+            // do nothing, cookies are already refused
         }
 
         let isAvailable = null;
