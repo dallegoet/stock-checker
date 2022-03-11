@@ -37,7 +37,7 @@ const log = (provider, product, status, statusColor) => {
 
                 if (isAvailable) {
                     log(provider, product, 'DISPONIBLE', chalk.green);
-                    //new Audic("available.mp3").play()
+                    new Audic("available.mp3").play()
                 } else {
                     log(provider, product, 'RUPTURE', chalk.red);
                 }
