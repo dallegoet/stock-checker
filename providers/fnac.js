@@ -8,7 +8,7 @@ module.exports = {
 
         let isAvailable = null;
         try {
-            await page.waitForSelector('.f-buyBox-availabilityStatus-available', {
+            await page.waitForSelector('.f-productOffers-fnac .f-buyBox-availabilityStatus-available', {
                 state: 'visible',
                 timeout: 5000,
             });
