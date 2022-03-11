@@ -12,7 +12,7 @@ const log = (provider, product, status, statusColor) => {
 
 (async () => {
     const browser = await firefox.launch({
-        headless: false, 
+        headless: true, 
         slowMo: 1000,
     });
     const page = await browser.newPage();
@@ -42,10 +42,11 @@ const log = (provider, product, status, statusColor) => {
                     log(provider, product, 'RUPTURE', chalk.red);
                 }
             } catch (e) {
+                //console.error(e);
                 process.stdout.moveCursor(0, -1) // up one line
                 process.stdout.clearLine(1) // from cursor to end
                 log(provider, product, 'ERREUR', chalk.yellow);
-                //console.error(e);
+                process.exit(0);
             }
         }
 
